@@ -194,12 +194,6 @@ class Solution():
         print(len(self.placesTailHasBeen[9]))
 
 
-
-
-
-
-
-
 solution = Solution()
 solution.LoadInput('input.txt')
 solution.part1()
