@@ -89,7 +89,35 @@ class Solution():
 
 
         print(sum(rightOrderedIndices))
-        print(rightOrderedIndices)
+
+
+    def part2(self):
+
+        packets = [[[2]], [[6]]]
+
+        for pair in self.pairs:
+
+            packets.append(pair[0])
+            packets.append(pair[1])
+        
+        sortedPackets = []
+        sortedPackets.append(packets.pop())
+
+        while len(packets) > 0:
+
+            packet = packets.pop()
+            
+            # yeah this is pretty garbage code. I should refactor this
+            for i in reversed(range(len(sortedPackets))):
+
+                if not self.isOrdered(packet, sortedPackets[i]):
+                    sortedPackets.insert(i + 1, packet)
+                    break
+
+            if packet not in sortedPackets:
+                sortedPackets.insert(0, packet)
+
+        print((sortedPackets.index([[2]]) + 1) * (1 + (sortedPackets.index([[6]]))))
 
 
 
@@ -97,3 +125,4 @@ class Solution():
 solution = Solution()
 solution.LoadInput('input.txt')
 solution.part1()
+solution.part2()
